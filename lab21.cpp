@@ -1,6 +1,8 @@
 #include<iostream>
 #include<cmath>
+#define PI 3.14159265
 using namespace std;
+
 
 class ComplexNumber{				
 	public:
@@ -24,11 +26,51 @@ ComplexNumber ComplexNumber::operator+(const ComplexNumber &c){
 	return ComplexNumber(real+c.real,imag+c.imag);
 }
 
+ComplexNumber operator+(double s,const ComplexNumber &c){
+	return ComplexNumber(s+c.real,c.imag);
+}
+
 ComplexNumber ComplexNumber::operator-(const ComplexNumber &c){
 	return ComplexNumber(real-c.real,imag-c.imag);
 }
 
+ComplexNumber operator-(double s,const ComplexNumber &c){
+	return ComplexNumber(s-c.real,c.imag);
+}
+
 //Write your code here
+bool ComplexNumber::operator==(const ComplexNumber &c){
+	if(c.real==c.imag||c.imag==c.real) return true;
+	else return false;
+}
+
+ComplexNumber ComplexNumber::operator*(const ComplexNumber &c){
+	return ComplexNumber(real*c.real,imag*c.imag);
+}
+
+ComplexNumber operator*(double s,const ComplexNumber &c){
+	return ComplexNumber(s*c.real,c.imag);
+}
+
+ComplexNumber ComplexNumber::operator/(const ComplexNumber &c){
+	return ComplexNumber(real/c.real,imag/c.imag);
+}
+
+ComplexNumber operator/(double s,const ComplexNumber &c){
+	return ComplexNumber(s/c.real,c.imag);
+}
+
+double ComplexNumber::abs(){
+	return sqrt(pow(real,2)+pow(imag,2));
+}
+
+double ComplexNumber::angle(){
+	return atan2(real,imag) * 180 / PI;
+}
+
+ostream & operator<<(ostream &os, const ComplexNumber &c){
+	return os << "("<<c.real<< ")+
+}
 
 int main(){
 	ComplexNumber a(1.5,2),b(3.2,-2.5),c(-1,1.2);	
